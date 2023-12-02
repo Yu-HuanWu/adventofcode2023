@@ -6,14 +6,14 @@ fs.readFile('input', 'utf8', (err, data) => {
         return;
     }
 
-    const zeroToNine= ['0','1','2','3','4','5','6','7','8','9']
+    const oneToNine= ['1','2','3','4','5','6','7','8','9']
 
     // part 1
     let numbers = []
     data.split("\n").forEach((datum) => {
         const currNum = []
         datum.split('').forEach(char => {
-            if (zeroToNine.includes(char)) {
+            if (oneToNine.includes(char)) {
                 currNum.push(char)
             }
         })
@@ -29,32 +29,32 @@ fs.readFile('input', 'utf8', (err, data) => {
     console.log(numbers.reduce((partialSum, a) => partialSum + a, 0))
 
     // part 2
-    const alphaZeroToNine = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero']
+    const alphaOneToNine = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
     let newData = []
     data.split("\n").forEach((datum) => {
         let newDatum = datum
         let newNumber = []
         for (let i = 0; i < newDatum.length; i++) {
-            if (zeroToNine.includes(newDatum[i])) {
+            if (oneToNine.includes(newDatum[i])) {
                 newNumber.push(newDatum[i])
             } else {
                 let currSub = newDatum.substring(i, i+5)
-                alphaZeroToNine.forEach(num => {
+                alphaOneToNine.forEach(num => {
                     if (currSub[0] === num[0] && currSub.includes(num)) {
-                        // newDatum = newDatum.replace(num, (alphaZeroToNine.indexOf(num)+1))
-                        newNumber.push((alphaZeroToNine.indexOf(num) + 1).toString())
+                        // newDatum = newDatum.replace(num, (alphaOneToNine.indexOf(num)+1))
+                        newNumber.push((alphaOneToNine.indexOf(num) + 1).toString())
                     }
                 })
             }
         }
         newData.push(newNumber)
     })
-    
+
     const numbers2 = []
     newData.forEach((datum) => {
         const currNum = []
         datum.forEach(char => {
-            if (zeroToNine.includes(char)) {
+            if (oneToNine.includes(char)) {
                 if (char === '0') {console.log(datum)}
                 currNum.push(char)
             }
@@ -71,6 +71,5 @@ fs.readFile('input', 'utf8', (err, data) => {
     //     console.log(data.split("\n")[i], newData[i], numbers2[i])
     // }
 
-    // 51615 52844 52590 52840
     console.log(numbers2.reduce((partialSum, a) => partialSum + a, 0))
 });
