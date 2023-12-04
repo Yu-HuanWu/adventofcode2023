@@ -35,16 +35,20 @@ fs.readFile('input', 'utf8', (err, data) => {
 
     // part 2 cont
     let numOfCopies = {'1': 1}
-    for (let i = 1; i < 202; i++) {
-        for (let j = i+1; j < totalWins[`${i}`]+2; j++) {
-            console.log(j, i, totalWins[`${i}`])
+    for (let i = 1; i < data.split("\n").length + 1; i++) {
+        let belowWinningCard = totalWins[`${i}`] + 1 +i
+        if (totalWins[`${i}`] === 0) {
+            if (numOfCopies[`${i + 1}`] === undefined && i < data.split("\n").length) {
+                numOfCopies[`${i+1}`] = 1
+            }             
+        }
+        for (let j = (i + 1); j < belowWinningCard; j++) {
             if (numOfCopies[`${j}`] !== undefined) {
-                numOfCopies[`${j}`] += 1
+                numOfCopies[`${j}`] += (numOfCopies[`${i}`])
             } else {
-                numOfCopies[`${j}`] = 1
+                numOfCopies[`${j}`] = 1+ (numOfCopies[`${i}`])
             }
-
         }
     }
-    console.log(numOfCopies)
+    console.log(Object.values(numOfCopies).reduce((partialSum, a) => partialSum + a, 0))
 });
