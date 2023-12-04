@@ -100,7 +100,6 @@ fs.readFile('input', 'utf8', (err, data) => {
         }
     }
     
-    // let deduped = [...new Set(numbers)]
     console.log(numbers.reduce((partialSum, a) => partialSum + a, 0))
 
     // part 2 
