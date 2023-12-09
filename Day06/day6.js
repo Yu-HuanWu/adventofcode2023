@@ -8,7 +8,7 @@ fs.readFile('input', 'utf8', (err, data) => {
 
     // part 1
 
-    data.split("\n\n").forEach((datum, idx) => {
+    data.split("\n\n").forEach((datum) => {
 
     });
 
