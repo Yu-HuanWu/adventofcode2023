@@ -55,5 +55,5 @@ fs.readFile('input', 'utf8', (err, data) => {
     console.log(Math.min(...locations))
 
     // part 2
-
+    // man i am so sick
 });
